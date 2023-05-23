@@ -1,20 +1,36 @@
+import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
+import Jumbotron from './components/Jumbotron';
+import AboutMe from './components/AboutMe';
+import FavoriteActivities from './components/FavoriteActivities';
+import ActivityGenerator from './components/ActivityGenerator';
+
+const myActivities = ['Snowshoeing', 'Rock Climbing', 'Reading', 'Crocodile Hunting (legal)', 'Photoshopping', 'Deep Sea Exploring', 'Painting', 'Singing A Cappella Music'];
 
 export default function App() {
+  const [activitiesList, setActivitiesList] = useState([...myActivities]);
+
+  function handleAddActivity(newActivity) {
+    setActivitiesList( (prevActivities) => [...prevActivities, newActivity] )
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <StatusBar style="dark" />
+      <ScrollView style={styles.container}>
+        <Jumbotron />
+        <AboutMe />
+        <ActivityGenerator />
+        <FavoriteActivities activities={activitiesList} onAddActivity={handleAddActivity} />
+      </ScrollView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingVertical: '10%',
+    paddingHorizontal: 30
   },
 });
