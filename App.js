@@ -15,6 +15,14 @@ export default function App() {
     setActivitiesList( (prevActivities) => [...prevActivities, newActivity] )
   }
 
+  function handleDelActivity(removeActivity) {
+    setActivitiesList( (prevActivities) => {
+      return (
+        prevActivities.filter((activity) => (activity !== removeActivity))
+      )
+    })
+  }
+
   return (
     <>
       <StatusBar style="dark" />
@@ -22,7 +30,7 @@ export default function App() {
         <Jumbotron />
         <AboutMe />
         <ActivityGenerator />
-        <FavoriteActivities activities={activitiesList} onAddActivity={handleAddActivity} />
+        <FavoriteActivities activities={activitiesList} onAddActivity={handleAddActivity} onDelActivity={handleDelActivity} />
       </ScrollView>
     </>
   );

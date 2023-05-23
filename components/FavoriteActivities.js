@@ -9,7 +9,7 @@ export default function FavoriteActivities(props) {
         <Text style={styles.favoritesHeadingText}>My Favorite Activities</Text>
         <View>
           {
-            props.activities.map( (activity) => <SingleFavAct key={activity} actName={activity} />  )
+            props.activities.map( (activity) => <SingleFavAct key={activity} actName={activity} onDelActivity={props.onDelActivity} />  )
           }
         </View>
 

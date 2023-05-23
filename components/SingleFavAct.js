@@ -3,11 +3,11 @@ import { View, Text, StyleSheet, Pressable } from 'react-native';
 function SingleFavAct(props) {
 
 	return (
-    <View>
+    <Pressable onPress={() => props.onDelActivity(props.actName)}>
       <View style={styles.singleActivity}>
         <Text style={styles.activityText}>{props.actName}</Text>
       </View>
-    </View>
+    </Pressable>
 
 	)
 }
